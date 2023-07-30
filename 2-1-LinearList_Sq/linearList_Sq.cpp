@@ -85,7 +85,7 @@ int main(){
 	ListInsert(L, 5, 8);
 	getListLength(L);
 	
-	printf("%d\n", LocateElem(L, 8));
+	printf("%d\n", LocateElem(L, 8))
 	
 	displayList(L);
 	

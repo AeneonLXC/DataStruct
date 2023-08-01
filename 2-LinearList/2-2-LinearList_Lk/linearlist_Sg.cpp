@@ -16,12 +16,51 @@ typedef struct LNode{
 
 // have head node
 bool InitList(LinkList &L){
-	L  = (LNode*)malloc(sizeof(LNode));
+	L = (LNode*)malloc(sizeof(LNode));
 	if(L == NULL){
 		return false;
 	} 
 	L->next = NULL;
+	
+	// init node value of list equal 0,1,2,...,9
+//	for(int i = 0; i < 10; i++){
+//		ListInsert(L, i, i);
+//	}
 	return true;
+}
+
+// node init and user scanf value for node
+LinkList List_TailInsert(LinkList &L){
+	ElemType x;
+	L = (LNode*)malloc(sizeof(LNode));
+	LNode *s, *r = L;
+	scanf("%d", &x);
+	while(x != 9999){
+		s = (LNode*)malloc(sizeof(LNode));
+		s->data = x;
+		r->next = s;
+		r = s;
+		scanf("%d", &x);
+	}
+	r->next = NULL;
+	return L;
+}
+
+// node init and user scanf value for node
+LinkList List_HeadInsert(LinkList &L){
+	ElemType x;
+	L = (LNode*)malloc(sizeof(LNode));
+	L->next = NULL;
+	LNode *s;
+	scanf("%d", &x);
+	while(x != 9999){
+		s = (LNode*)malloc(sizeof(LNode));
+		s->data = x;
+		s->next = L->next;
+		L->next = s;
+		scanf("%d", &x);
+	}
+	return L;
 }
 
 bool InsertNextNode(LNode *p, ElemType e){
@@ -128,12 +167,8 @@ void displayList(LinkList L){
 
 int main(){
 	LinkList L;
-	InitList(L);
 	int e = 0;
-	
-	for(int i = 0; i < 10; i++){
-		ListInsert(L, i, i);
-	}
+	List_TailInsert(L);
 	
 	displayList(L);
 	ListDelete(L, 5, e);
